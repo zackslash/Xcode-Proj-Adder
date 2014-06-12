@@ -19,7 +19,8 @@ Run from terminal/script setting the -XCP argument along with one of the other t
 
 Example:
 
-Add Source files -\n
+Add Source files - 
+
 $ ./XcodeProjAdder -XCP "Full Path to .xcodeproj" -SCSV "csv of source file locations relative to xcode .xcodeproj"
 
 $ ./XcodeProjAdder -XCP /Users/jimjohn/Products/TestProj.xcodeproj -SCSV ../tst1.cpp,../tst2.cpp,../tst1.h
