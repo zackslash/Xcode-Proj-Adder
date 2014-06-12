@@ -1,22 +1,22 @@
 Xcode-Proj-Adder
 ================
 
-add files to Xcode projects from command line
+Add files to your Xcode project from command line
 
 When building Xcode projects from command line it was surprising to find that there is currently no way of adding source files to projects without using the IDE’s GUI. So… here is this quick tool to add source files to Xcode projects through OSX command line.
 
-Currently only supports/tested with .cpp and .h files
+Currently supports the adding of .h .m .cpp .swift .png and .jpg files
 
 If you just like the prebuild tool without the source, the latest build is available in the 'bin' directory.
 
 **Usage:**
 Run from terminal/script setting the -XCP argument along with one of the other two arguments.
 
--XCP = fully qualified path of ‘.xcodeproj’ (the project you want to add files to)`
+`-XCP` : Fully qualified path of ‘.xcodeproj’ (the project you want to add files to)
 
--SCSV = CSV list of source file locations relative to the .xcodeproj file
+`-SCSV` : CSV list of source file locations relative to the .xcodeproj file
 
--RESTORE = removes files added since last run
+`-RESTORE` : removes files added since last run
 
 
 **Example:**
