@@ -12,9 +12,9 @@ void addFilesToXproj(std::string projectFileLocation, std::string sourceFilePath
 {
     /* xcode projects '.xcodeproj' is actually a folder, we want to target a file within
      this folder so we append this to the users project file path input */
-    projectFileLocation = projectFileLocation+"/project.pbxproj";
+    projectFileLocation = projectFileLocation + "/project.pbxproj";
     
-    std::string initialProjectContent = get_file_contents(projectFileLocation);
+    std::string initialProjectContent = IOMethods::get_file_contents(projectFileLocation);
     std::string transformedProjectContent = initialProjectContent;
     std::vector<std::string> sourceFilePaths = split(sourceFilePathCSV, ',');
     std::cout <<  "\n";
@@ -26,20 +26,27 @@ void addFilesToXproj(std::string projectFileLocation, std::string sourceFilePath
         std::string fileExt = getFileExtensionFromFile(sourceFileName);
         std::cout << sourceFilePath + "\n";
         
-        //Generate UUIDs 1 & 2
-        std::string UUID1 = generateOSXUUID();
-        std::string UUID2 = generateOSXUUID();
-        
-        //Add to PBXBuildFile section (.cpp)
-        if (fileExt == "cpp")
+        //Check this tools compatiblity with file type
+        if(!ZoneFileTools::isFileTypeSupported(fileExt))
         {
-            std::string buildFileSectionHeader = "/* Begin PBXBuildFile section */"; //Only .CPP
+            std::cout <<  "\n ERROR: file type '" + fileExt +"' is currently unsupported by this tool, please remove that file from the CSV and try again (or implement it in src!)\n\n";
+            exit(1);
+        }
+        
+        //Generate UUIDs 1 & 2
+        std::string UUID1 = IOMethods::generateOSXUUID();
+        std::string UUID2 = IOMethods::generateOSXUUID();
+        
+        //PBXBuildFile section
+        if (ZoneFileTools::fileBelongsInArea(fileExt, "PBXBuildFile"))
+        {
+            std::string buildFileSectionHeader = "/* Begin PBXBuildFile section */";
             std::string buildFileSectionEntry = "		" + UUID1 + " /* " + sourceFileName + " in Sources */ = {isa = PBXBuildFile; fileRef = " + UUID2 + " /* " + sourceFileName + " */; };";
             transformedProjectContent = ReplaceString(transformedProjectContent, buildFileSectionHeader, buildFileSectionHeader + "\n" + buildFileSectionEntry);
         }
         
-        //Add to PBXSourcesBuildPhase section (.cpp)
-        if (fileExt == "cpp")
+        //PBXSourcesBuildPhase section
+        if (ZoneFileTools::fileBelongsInArea(fileExt, "PBXSourcesBuildPhase"))
         {
             std::string PBXSourcesBuildPhaseHeader = "/* Begin PBXSourcesBuildPhase section */";
             std::string PBXSourcesBuildPhaseFooter = "/* End PBXSourcesBuildPhase section */";
@@ -50,37 +57,32 @@ void addFilesToXproj(std::string projectFileLocation, std::string sourceFilePath
             transformedProjectContent = ReplaceString(transformedProjectContent, initialBuildPhaseWholeSection, transformedBuildPhaseWholeSection);
         }
         
-        //Add to PBXFileReference section (.CPP & .h)
-        if (fileExt == "cpp" || fileExt == "h")
+        //PBXFileReference section
+        if (ZoneFileTools::fileBelongsInArea(fileExt, "PBXFileReference"))
         {
             std::string PBXFileReferenceHeader = "/* Begin PBXFileReference section */";
-            
-            //Determine and set file type
-            std::string cppIdentifier = "sourcecode.cpp.cpp";
-            std::string hIdentifier = "sourcecode.c.h";
-            std::string selectedIdentifier = "";
-            
-            //Select our file identifier
-            if(fileExt == "cpp")
-                selectedIdentifier = cppIdentifier;
-            else if(fileExt == "h")
-                selectedIdentifier = hIdentifier;
-            else //fallback to cpp
-                selectedIdentifier = cppIdentifier;
-            
-            std::string PBXFileReferenceEntry = "		" + UUID2 + " /* " + sourceFileName + " */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = " + selectedIdentifier + "; name = " + sourceFileName + "; path = " + sourceFilePath + "; sourceTree = \"<group>\"; };";
+            std::string PBXFileReferenceEntry = "		" + UUID2 + " /* " + sourceFileName + " */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = " + ZoneFileTools::getIdentifierForFileExtention(fileExt) + "; name = " + sourceFileName + "; path = " + sourceFilePath + "; sourceTree = \"<group>\"; };";
             transformedProjectContent = ReplaceString(transformedProjectContent, PBXFileReferenceHeader, PBXFileReferenceHeader + "\n" + PBXFileReferenceEntry);
         }
         
-        //Add to PBXGroup section (.CPP & .h)
-        if (fileExt == "cpp" || fileExt == "h")
+        //PBXGroup section
+        if (ZoneFileTools::fileBelongsInArea(fileExt, "PBXGroup"))
         {
             const std::string PBXGroupHeader="/* Begin PBXGroup section */";
-            std::string PBXGroupEntry= UUID2 +" /* + sourceFileName + */,\n";
             std::string initialPBXGroupWholeSection = trimBefore(transformedProjectContent, PBXGroupHeader);
             initialPBXGroupWholeSection = trimPast(initialPBXGroupWholeSection, ");");
             std::string transformedPBXGroupWhileSection = initialPBXGroupWholeSection + "    " + UUID2 + " /* " + sourceFileName + " */,\n";
             transformedProjectContent = ReplaceString(transformedProjectContent, initialPBXGroupWholeSection, transformedPBXGroupWhileSection);
+        }
+        
+        //PBXResourcesBuildPhase section
+        if (ZoneFileTools::fileBelongsInArea(fileExt, "PBXResourcesBuildPhase"))
+        {
+            const std::string PBXResourcesBuildHeader="/* Begin PBXResourcesBuildPhase section */";
+            std::string initialPBXResourcesBuildWholeSection = trimBefore(transformedProjectContent, PBXResourcesBuildHeader);
+            initialPBXResourcesBuildWholeSection = trimPast(initialPBXResourcesBuildWholeSection, ");");
+            std::string transformedPBXResourcesBuildWhileSection = initialPBXResourcesBuildWholeSection + "    " + UUID1 + " /* " + sourceFileName + " */,\n";
+            transformedProjectContent = ReplaceString(transformedProjectContent, initialPBXResourcesBuildWholeSection, transformedPBXResourcesBuildWhileSection);
         }
     }
     

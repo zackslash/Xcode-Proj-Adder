@@ -10,16 +10,19 @@
 #include "xprojFileAdder.h"
 
 /*
- *Takes arguments -XCP = Xcode project location
- *-SCSV CSV list of source file locations relative to the xcode project you wish to add them
- *(Right now only supports .cpp & .h)
+ * Arguments
+ * ==================
+ * -XCP = Xcode project location.
+ * -SCSV = CSV list of source file locations relative to the xcode project you wish to add them.
+ * -RESTORE = restore project file that was backed up on last run of this tool.
  */
+
 int main(int argc, const char * argv[])
 {
-    std::string projectFileLocation = ""; //"/Users/lukehines/Library/Developer/Xcode/DerivedData/xProjgjdr/Build/Products/Debug/TestProj/TestProj.xcodeproj";
-    std::string sourceFilePathCSV = ""; //"../tst1.cpp,../tst2.cpp";
+    std::string projectFileLocation = ""; //Example: "/Users/lukehines/Library/Developer/Xcode/DerivedData/xProjgjdr/Build/Products/Debug/TestProj/TestProj.xcodeproj";
+    std::string sourceFilePathCSV = ""; //Example: "../tst1.cpp,../tst2.cpp";
     bool restore = false;
-    
+
     //Get arguments
     for(int count = 1; count < argc; count++ )
     {
@@ -36,28 +39,27 @@ int main(int argc, const char * argv[])
             restore = true;
         }
     }
-    
+
     //Input validation
     if(restore)
     {
         if(projectFileLocation.length() <= 0)
         {
             std::cout << "Xcode project location is required for restore | \n-XCP = Xcode project location\n";
-            return 0;
+            return 1;
         }
         restoreXprojFromBackup(projectFileLocation);
         return 0;
     }
-    
+
     //Input validation
     if(projectFileLocation.length() <= 0 || sourceFilePathCSV.length() <= 0)
     {
-        std::cout << "-XCP and one other argument are required | \n-XCP = Xcode project location \n-SCSV = CSV list of source file locations relative to the xcode project\n-RESTORE = restore project to backup file\n";
-        return 0;
+        std::cout << "atleast XCP with 1 other argument required. \n-XCP = Xcode project location (.xcodeproj) \n-SCSV = CSV list of source file locations relative to the xcode project\n-RESTORE = restore project to backup file\n";
+        return 1;
     }
-    
+
     addFilesToXproj(projectFileLocation, sourceFilePathCSV);
-    
+
     return 0;
 }
-

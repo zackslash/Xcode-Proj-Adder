@@ -11,10 +11,10 @@
 void restoreXprojFromBackup(std::string projectFileLocation)
 {
     /* xcode projects '.xcodeproj' is actually a folder, we want to target a file within
-     this folder so we append this to the users project file path input */
+     * this folder so we append this to the users project file path input */
     projectFileLocation = projectFileLocation+"/project.pbxproj";
-    
-    std::string initialProjectContent = get_file_contents(projectFileLocation+"back");
+
+    std::string initialProjectContent = IOMethods::get_file_contents(projectFileLocation+"back");
     std::ofstream out(projectFileLocation);
     out << initialProjectContent;
     out.close();

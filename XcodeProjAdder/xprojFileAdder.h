@@ -13,6 +13,7 @@
 #include "stringMethods.h"
 #include "IOMethods.h"
 #include "xprojRestorer.h"
+#include "xprojZoneFileTools.h"
 
 //Adds a CSV list of relative (to the project) source files to an xcode project
 void addFilesToXproj(std::string projectFileLocation, std::string sourceFilePathCSV);

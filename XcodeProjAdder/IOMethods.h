@@ -14,10 +14,13 @@
 #include <string>
 #include "stringMethods.h"
 
-//Retrieves a 24 character UUID for MAC OSX
-std::string generateOSXUUID();
+namespace IOMethods
+{
+    //Generates a 24 char UUID string in OSX
+    std::string generateOSXUUID();
 
-//Retrieves full file contents as a string
-std::string get_file_contents(std::string filename);
+    //Retrieves file contents as string
+    std::string get_file_contents(std::string filename);
+}
 
 #endif

@@ -8,7 +8,7 @@
 
 #include "IOMethods.h"
 
-std::string generateOSXUUID()
+std::string IOMethods::generateOSXUUID()
 {
     FILE* pipe = popen("uuidgen", "r");
     if (!pipe) return "ERROR";
@@ -25,7 +25,7 @@ std::string generateOSXUUID()
     return result;
 }
 
-std::string get_file_contents(std::string filename)
+std::string IOMethods::get_file_contents(std::string filename)
 {
     try {
         std::ifstream in(filename, std::ios::in | std::ios::binary);
