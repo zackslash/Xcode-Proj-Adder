@@ -20,9 +20,9 @@ Run from terminal/script setting the -XCP argument along with one of the other t
 Example:
 
 Add Source files -
-$ ./XcodeProjAdder -XCP <Full Path to .xcodeproj> -SCSV <csv of source file locations relative to xcode .xcodeproj>
+$ ./XcodeProjAdder -XCP "Full Path to .xcodeproj" -SCSV "csv of source file locations relative to xcode .xcodeproj"
 $ ./XcodeProjAdder -XCP /Users/jimjohn/Products/Debug/TestProj/TestProj.xcodeproj -SCSV ../tst1.cpp,../tst2.cpp,../tst1.h
 
 Restore project to state before files were added -
-$ ./XcodeProjAdder -XCP <Full Path to .xcodeproj> -RESTORE
+$ ./XcodeProjAdder -XCP "Full Path to .xcodeproj" -RESTORE
 $ ./XcodeProjAdder -XCP /Users/jimjohn/Products/Debug/TestProj/TestProj.xcodeproj -RESTORE
