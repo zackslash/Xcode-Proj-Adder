@@ -32,3 +32,6 @@ Run from terminal/script setting the -XCP argument along with one of the other t
 `$ ./XcodeProjAdder -XCP "Full Path to .xcodeproj" -RESTORE`
 
 `$ ./XcodeProjAdder -XCP /Users/jimjohn/Products/TestProj.xcodeproj -RESTORE`
+
+
+This project is made available under the DON'T BE A DICK PUBLIC LICENSE (http://www.dbad-license.org/)
