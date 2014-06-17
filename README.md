@@ -3,9 +3,10 @@ Xcode-Proj-Adder
 
 Add files to your Xcode project from command line
 
-When building Xcode projects from command line it is surprising to find that there is currently no way of adding files to a project without going through the GUI. So… here is this quick tool to add files to Xcode projects through OSX command line.
+When building Xcode projects from command line it is surprising to find that there is currently no way to add files to a project without going through the GUI. So… here is this quick tool to add existing files an Xcode project through OSX command line.
 
-Currently supports the adding of .h .m .cpp .swift .png .jpg and .mp3 file types.
+Currently supports adding these types of files
+.h .m .cpp .swift .png .jpg .mp3 .ttf
 
 If you just want the prebuilt tool, it is available in the 'bin' directory.
 
