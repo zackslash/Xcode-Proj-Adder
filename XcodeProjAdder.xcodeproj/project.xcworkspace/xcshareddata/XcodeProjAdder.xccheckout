@@ -10,29 +10,29 @@
 	<string>XcodeProjAdder</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C1FD5254-6045-4A39-9C2E-F11A00B53982</key>
+		<key>0FDD656733D5B0D52E92EA04E779D4A82A0CED51</key>
 		<string>https://github.com/zackslash/Xcode-Proj-Adder.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>XcodeProjAdder.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C1FD5254-6045-4A39-9C2E-F11A00B53982</key>
+		<key>0FDD656733D5B0D52E92EA04E779D4A82A0CED51</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/zackslash/Xcode-Proj-Adder.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C1FD5254-6045-4A39-9C2E-F11A00B53982</string>
+	<string>0FDD656733D5B0D52E92EA04E779D4A82A0CED51</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C1FD5254-6045-4A39-9C2E-F11A00B53982</string>
+			<string>0FDD656733D5B0D52E92EA04E779D4A82A0CED51</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Xcode-Proj-Adder</string>
 		</dict>

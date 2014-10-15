@@ -22,7 +22,7 @@
 #include "xprojZoneFileTools.h"
 
 //File types currently supported by this tool
-vector<string> supportedFileTypes {"cpp", "h", "png", "jpg","m","swift","mp3","ttf","ogg"};
+vector<string> supportedFileTypes {"cpp", "h", "png", "jpg","m","swift","mp3","ttf","ogg","mm"};
 
 //Returns the xcode file type ID for a specified file type
 string ZoneFileTools::getIdentifierForFileExtention(string fileExtention)
@@ -42,6 +42,8 @@ string ZoneFileTools::getIdentifierForFileExtention(string fileExtention)
         fileIdentifier = "sourcecode.swift";
     else if(fileExtention == supportedFileTypes[6])
         fileIdentifier = "audio.mp3";
+    else if(fileExtention == supportedFileTypes[9])
+        fileIdentifier = "sourcecode.cpp.objcpp";
     else
         return "file";
     
@@ -52,22 +54,22 @@ string ZoneFileTools::getIdentifierForFileExtention(string fileExtention)
 {
     if(areaID == "PBXBuildFile")
     {
-        vector<string> eligibleFileTypes {supportedFileTypes[0], supportedFileTypes[2], supportedFileTypes[3], supportedFileTypes[4], supportedFileTypes[5],supportedFileTypes[6],supportedFileTypes[7],supportedFileTypes[8]};
+        vector<string> eligibleFileTypes {supportedFileTypes[0], supportedFileTypes[2], supportedFileTypes[3], supportedFileTypes[4], supportedFileTypes[5],supportedFileTypes[6],supportedFileTypes[7],supportedFileTypes[8],supportedFileTypes[9]};
         return ZoneFileTools::in_array(fileExtension, eligibleFileTypes);
     }
     else if(areaID == "PBXSourcesBuildPhase")
     {
-        vector<string> eligibleFileTypes {supportedFileTypes[0], supportedFileTypes[4], supportedFileTypes[5]};
+        vector<string> eligibleFileTypes {supportedFileTypes[0], supportedFileTypes[4], supportedFileTypes[5],supportedFileTypes[9]};
         return ZoneFileTools::in_array(fileExtension, eligibleFileTypes);
     }
     else if(areaID == "PBXFileReference")
     {
-        vector<string> eligibleFileTypes {supportedFileTypes[0], supportedFileTypes[1], supportedFileTypes[2], supportedFileTypes[3], supportedFileTypes[4], supportedFileTypes[5],supportedFileTypes[6],supportedFileTypes[7],supportedFileTypes[8]};
+        vector<string> eligibleFileTypes {supportedFileTypes[0], supportedFileTypes[1], supportedFileTypes[2], supportedFileTypes[3], supportedFileTypes[4], supportedFileTypes[5],supportedFileTypes[6],supportedFileTypes[7],supportedFileTypes[8],supportedFileTypes[9]};
         return ZoneFileTools::in_array(fileExtension, eligibleFileTypes);
     }
     else if(areaID == "PBXGroup")
     {
-        vector<string> eligibleFileTypes {supportedFileTypes[0], supportedFileTypes[1], supportedFileTypes[2], supportedFileTypes[3], supportedFileTypes[4], supportedFileTypes[5],supportedFileTypes[6],supportedFileTypes[7],supportedFileTypes[8]};
+        vector<string> eligibleFileTypes {supportedFileTypes[0], supportedFileTypes[1], supportedFileTypes[2], supportedFileTypes[3], supportedFileTypes[4], supportedFileTypes[5],supportedFileTypes[6],supportedFileTypes[7],supportedFileTypes[8],supportedFileTypes[9]};
         return ZoneFileTools::in_array(fileExtension, eligibleFileTypes);
     }
     else if(areaID == "PBXResourcesBuildPhase")
