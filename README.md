@@ -7,7 +7,8 @@ When building Xcode projects from command line it is surprising to find that the
 
 Currently supports adding these types of files
 .h .m .cpp .mm .swift .png .jpg .mp3 .ttf .ogg 
-If you just want the prebuilt tool, it is available in the 'bin' directory.
+
+If you are after the prebuilt tool, pull the source and it is available in the 'bin' directory.
 
 **Usage:**
 Run from terminal/script setting the -XCP argument along with one of the other two arguments.
