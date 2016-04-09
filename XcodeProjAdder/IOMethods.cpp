@@ -8,6 +8,9 @@
 //  DON'T BE A DICK PUBLIC LICENSE TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 //
 
+#include <cerrno>
+#include <cstdlib>
+
 #include "IOMethods.h"
 
 std::string IOMethods::generateOSXUUID()
