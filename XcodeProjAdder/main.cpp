@@ -8,6 +8,8 @@
 //  DON'T BE A DICK PUBLIC LICENSE TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 //
 
+#include <cstring>
+
 #include "xprojRestorer.h"
 #include "xprojFileAdder.h"
 

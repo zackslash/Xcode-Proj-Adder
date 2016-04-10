@@ -19,6 +19,8 @@
  *
  */
 
+#include <algorithm>
+
 #include "xprojZoneFileTools.h"
 
 //File types currently supported by this tool

@@ -8,6 +8,8 @@
 //  DON'T BE A DICK PUBLIC LICENSE TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 //
 
+#include <cstdlib>
+
 #include "xprojFileAdder.h"
 
 void addFilesToXproj(std::string projectFileLocation, std::string sourceFilePathCSV)
