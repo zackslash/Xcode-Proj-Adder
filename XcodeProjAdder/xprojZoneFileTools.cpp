@@ -24,7 +24,7 @@
 #include "xprojZoneFileTools.h"
 
 //File types currently supported by this tool
-vector<string> supportedFileTypes {"cpp", "h", "png", "jpg","m","swift","mp3","ttf","ogg","mm","pem","hpp","c"};
+vector<string> supportedFileTypes {"cpp", "h", "png", "jpg","m","swift","mp3","ttf","ogg","mm","pem","hpp","c","js"};
 
 //Returns the xcode file type ID for a specified file type
 string ZoneFileTools::getIdentifierForFileExtention(string fileExtention)
@@ -50,6 +50,9 @@ string ZoneFileTools::getIdentifierForFileExtention(string fileExtention)
         fileIdentifier = "sourcecode.cpp.h";
     else if(fileExtention == supportedFileTypes[12])
         fileIdentifier = "sourcecode.c.c";
+    else if(fileExtention == supportedFileTypes[12])
+        fileIdentifier = "sourcecode.javascript";
+
     else
         return "file";
     
