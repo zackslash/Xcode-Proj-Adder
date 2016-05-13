@@ -50,7 +50,7 @@ string ZoneFileTools::getIdentifierForFileExtention(string fileExtention)
         fileIdentifier = "sourcecode.cpp.h";
     else if(fileExtention == supportedFileTypes[12])
         fileIdentifier = "sourcecode.c.c";
-    else if(fileExtention == supportedFileTypes[12])
+    else if(fileExtention == supportedFileTypes[13])
         fileIdentifier = "sourcecode.javascript";
 
     else
