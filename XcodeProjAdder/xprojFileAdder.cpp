@@ -21,6 +21,7 @@ void addFilesToXproj(std::string projectFileLocation, std::string sourceFilePath
     std::string initialProjectContent = IOMethods::get_file_contents(projectFileLocation);
     std::string transformedProjectContent = initialProjectContent;
     std::vector<std::string> sourceFilePaths = split(sourceFilePathCSV, ',');
+    sourceFilePaths =  IOMethods::expand_dirs(sourceFilePaths);
     std::cout <<  "\n";
     
     for(std::vector<std::string>::iterator it = sourceFilePaths.begin(); it != sourceFilePaths.end(); ++it)

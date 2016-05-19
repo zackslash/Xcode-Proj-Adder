@@ -20,9 +20,12 @@ namespace IOMethods
 {
     //Generates a 24 char UUID string in OSX
     std::string generateOSXUUID();
-
+    
     //Retrieves file contents as string
     std::string get_file_contents(std::string filename);
+    
+    //Given a list if files, expand it so that all directory paths are converted to their contents
+    std::vector<std::string> expand_dirs(std::vector<std::string> filenames);
 }
 
 #endif
