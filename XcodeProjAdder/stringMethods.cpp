@@ -47,13 +47,15 @@ std::vector<std::string> split(const std::string &s, char delim)
 
 std::string trimPast(const std::string &s, const std::string delimiter)
 {
-    std::string token = s.substr(0, s.find(delimiter));
+    size_t pos = s.find(delimiter);
+    std::string token = (pos != -1) ? s.substr(0, pos) : s;
     return token;
 }
 
 std::string trimBefore(const std::string &s, const std::string delimiter)
 {
-    std::string token = s.substr(s.find(delimiter), s.length());
+    size_t pos = s.find(delimiter);
+    std::string token = (pos != -1) ? s.substr(pos, s.length()) : s;
     return token;
 }
 
