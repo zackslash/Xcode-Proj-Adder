@@ -1,6 +1,8 @@
 Xcode-Proj-Adder
 ================
 
+***This project is deprecated: This solution no longer works with the latest versions of Xcode and there are currently no plans to update it. However there is a Ruby gem that can be used to provide the same functionality that this project used to. you can find more details [Here](https://github.com/CocoaPods/Xcodeproj)***
+
 Add files to your Xcode project from command line
 
 When building Xcode projects from command line it is surprising to find that there is currently no way to add files to a project without going through the GUI. So… here is this quick tool to add existing files an Xcode project through OSX command line.
